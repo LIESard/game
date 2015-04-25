@@ -68,6 +68,17 @@ int buffers_init(SDL_Renderer *ren) {
     return 0;
 }
 
+SDL_Rect createCamera() {
+    SDL_Rect camera = {0, 0, WINDOW_WIDTH, WINDOW_HEIGHT};
+
+    return camera;
+}
+
+void setCameraToEntity(SDL_Rect camera, entity * e) {
+    camera.x = e->x + (e->w / 2) + (WINDOW_WIDTH / 2);
+    camera.y = e->y + (e->h / 2) + (WINDOW_HEIGHT / 2);
+}
+
 void setTargetToCollisionBuffer(SDL_Renderer *ren) {
     if (SDL_SetRenderTarget(ren, collision_buffer) != 0) {
         fprintf(stderr, "Failed to switch Target to collision_buffer");

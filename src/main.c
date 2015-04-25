@@ -119,10 +119,11 @@ int main(int argc, char **argv) {
 
     curr_buffer = buffer;
     SDL_Event e;
-    SDL_Rect render_rect;
+    SDL_Rect camera = createCamera();
+    /*SDL_Rect render_rect;
     render_rect.x = 0; render_rect.y = 0;
     render_rect.w = WINDOW_WIDTH;
-    render_rect.h = WINDOW_HEIGHT;
+    render_rect.h = WINDOW_HEIGHT;*/
     bool quit = false;
     int deltaTime = 0;
     int currentFrame = SDL_GetTicks();
@@ -137,6 +138,7 @@ int main(int argc, char **argv) {
 
         update(deltaTime);
         draw(deltaTime);
+        setCameraToEntity(camera, character);
 
         while (SDL_PollEvent(&e)) {
             if (e.type == SDL_QUIT)
@@ -148,7 +150,7 @@ int main(int argc, char **argv) {
         // Reset the target
         SDL_SetRenderTarget(renderer, NULL);
         // Copy the buffer
-        SDL_RenderCopy(renderer, curr_buffer, NULL, &render_rect);
+        SDL_RenderCopy(renderer, curr_buffer, NULL, &camera);
         // Draw the buffer to window
         SDL_RenderPresent(renderer);
 

@@ -21,6 +21,10 @@ void renderEntity(SDL_Renderer*, entity*, int color[3]);
 void renderToBuffer(SDL_Renderer*, SDL_Texture*, SDL_Rect*);
 void renderToCollisionBuffer(SDL_Renderer*, SDL_Rect*, int color[3]);
 
+// Camera stuff (It's messy, sorry)
+SDL_Rect createCamera();
+void setCameraToEntity(SDL_Rect camera, entity * e);
+
 // If occours any errors, prints to stderr
 void setTargetToCollisionBuffer(SDL_Renderer*);
 void setTargetToBuffer(SDL_Renderer*);
